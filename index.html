@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术支持 - App Support</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            flex: 1;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        header p {
+            font-size: 16px;
+            color: #86868b;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .card p {
+            font-size: 15px;
+            color: #515154;
+        }
+        .app-list {
+            list-style: none;
+        }
+        .app-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-list li:last-child { border-bottom: none; }
+        .app-name {
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .app-badge {
+            font-size: 12px;
+            color: #86868b;
+            background: #f5f5f7;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+        .contact-item a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .contact-item a:hover { text-decoration: underline; }
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: #86868b;
+            font-size: 13px;
+        }
+        @media (prefers-color-scheme: dark) {
+            body { background: #1c1c1e; color: #f5f5f7; }
+            .card { background: #2c2c2e; }
+            .card h2 { color: #f5f5f7; }
+            .card p { color: #a1a1a6; }
+            .app-list li { border-color: #38383a; }
+            .app-badge { background: #38383a; color: #a1a1a6; }
+            .contact-item a { color: #64a8ff; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 技术支持</h1>
+            <p>Technical Support · テクニカルサポート</p>
+        </header>
+
+        <div class="card">
+            <h2>联系我们 Contact Us</h2>
+            <div class="contact-item">
+                <span>✉️</span>
+                <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+            </div>
+            <p style="margin-top: 8px;">如有问题或建议，请随时发送邮件。我们会在 24 小时内回复。</p>
+        </div>
+
+        <div class="card">
+            <h2>我的 App</h2>
+            <ul class="app-list">
+                <li>
+                    <span class="app-name">CCD Preview</span>
+                    <span class="app-badge">摄影 · 滤镜</span>
+                </li>
+                <li>
+                    <span class="app-name">喵喵清理</span>
+                    <span class="app-badge">工具 · 照片整理</span>
+                </li>
+                <li>
+                    <span class="app-name">Meow Oracle</span>
+                    <span class="app-badge">娱乐 · 神谕</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>常见问题 FAQ</h2>
+            <p><strong>Q: 如何恢复购买？</strong><br>
+            A: 打开 App，进入设置/购买页面，点击「恢复购买」按钮即可。</p>
+            <p style="margin-top: 16px;"><strong>Q: 内购后无法使用？</strong><br>
+            A: 请确保网络连接正常，尝试重启 App。如问题持续，请联系我们。</p>
+            <p style="margin-top: 16px;"><strong>Q: App 闪退怎么办？</strong><br>
+            A: 尝试重启设备或重新安装 App。如果依旧闪退，请告知我们你的设备型号和 iOS 版本。</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 桢洋 黄. All rights reserved.</p>
+    </footer>
+</body>
+</html>
