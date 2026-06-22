@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技术支持 - App Support</title>
+    <title>App Support</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -18,23 +18,45 @@
         .container {
             max-width: 680px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 40px 24px;
             flex: 1;
         }
         header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
         header h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
-        header p {
-            font-size: 16px;
-            color: #86868b;
+        .lang-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
         }
+        .lang-btn {
+            background: none;
+            border: 1px solid #d2d2d7;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: #515154;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .lang-btn:hover { background: #e8e8ed; }
+        .lang-btn.active {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
         .card {
             background: #fff;
             border-radius: 16px;
@@ -45,15 +67,13 @@
         .card h2 {
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
-        .card p {
+        .card p, .card li {
             font-size: 15px;
             color: #515154;
         }
-        .app-list {
-            list-style: none;
-        }
+        .app-list { list-style: none; }
         .app-list li {
             padding: 14px 0;
             border-bottom: 1px solid #f0f0f0;
@@ -62,42 +82,36 @@
             align-items: center;
         }
         .app-list li:last-child { border-bottom: none; }
-        .app-name {
-            font-weight: 500;
-            font-size: 15px;
-        }
+        .app-name { font-weight: 500; font-size: 15px; }
         .app-badge {
-            font-size: 12px;
-            color: #86868b;
-            background: #f5f5f7;
-            padding: 2px 10px;
-            border-radius: 20px;
+            font-size: 12px; color: #86868b;
+            background: #f5f5f7; padding: 2px 10px;
+            border-radius: 20px; white-space: nowrap;
         }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 0;
+            display: flex; align-items: center; gap: 12px; padding: 8px 0;
         }
         .contact-item a {
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 15px;
+            color: #0066cc; text-decoration: none; font-size: 15px;
         }
         .contact-item a:hover { text-decoration: underline; }
+        .faq-item { margin-bottom: 18px; }
+        .faq-item:last-child { margin-bottom: 0; }
+        .faq-q { font-weight: 600; margin-bottom: 4px; }
+        .faq-a { color: #515154; }
         footer {
-            text-align: center;
-            padding: 32px 24px;
-            color: #86868b;
-            font-size: 13px;
+            text-align: center; padding: 32px 24px;
+            color: #86868b; font-size: 13px;
         }
         @media (prefers-color-scheme: dark) {
             body { background: #1c1c1e; color: #f5f5f7; }
             .card { background: #2c2c2e; }
             .card h2 { color: #f5f5f7; }
-            .card p { color: #a1a1a6; }
+            .card p, .card li, .faq-a { color: #a1a1a6; }
             .app-list li { border-color: #38383a; }
             .app-badge { background: #38383a; color: #a1a1a6; }
+            .lang-btn { border-color: #38383a; color: #a1a1a6; }
+            .lang-btn:hover { background: #38383a; }
             .contact-item a { color: #64a8ff; }
         }
     </style>
@@ -105,50 +119,183 @@
 <body>
     <div class="container">
         <header>
-            <h1>📱 技术支持</h1>
-            <p>Technical Support · テクニカルサポート</p>
+            <h1>📱 App Support</h1>
         </header>
 
-        <div class="card">
-            <h2>联系我们 Contact Us</h2>
-            <div class="contact-item">
-                <span>✉️</span>
-                <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+        <nav class="lang-nav" id="langNav">
+            <button class="lang-btn active" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="ja">日本語</button>
+            <button class="lang-btn" data-lang="ko">한국어</button>
+            <button class="lang-btn" data-lang="zh">简体中文</button>
+        </nav>
+
+        <!-- English -->
+        <div class="lang-section active" id="lang-en">
+            <div class="card">
+                <h2>Contact Us</h2>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+                </div>
+                <p>Feel free to email us with any questions or feedback. We typically respond within 24 hours.</p>
             </div>
-            <p style="margin-top: 8px;">如有问题或建议，请随时发送邮件。我们会在 24 小时内回复。</p>
+            <div class="card">
+                <h2>Our Apps</h2>
+                <ul class="app-list">
+                    <li><span class="app-name">CCD Preview</span><span class="app-badge">Photography · Filters</span></li>
+                    <li><span class="app-name">喵喵清理 (SwipeClean)</span><span class="app-badge">Utility · Photo Cleanup</span></li>
+                    <li><span class="app-name">Meow Oracle</span><span class="app-badge">Entertainment · Fortune</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>FAQ</h2>
+                <div class="faq-item">
+                    <div class="faq-q">Q: How do I restore my purchase?</div>
+                    <div class="faq-a">A: Open the app, go to Settings / Purchase page, and tap "Restore Purchase".</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: Purchase not working after payment?</div>
+                    <div class="faq-a">A: Make sure you have a stable internet connection and restart the app. If the issue persists, contact us.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: App crashes on launch?</div>
+                    <div class="faq-a">A: Try restarting your device or reinstalling the app. If it still crashes, let us know your device model and iOS version.</div>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>我的 App</h2>
-            <ul class="app-list">
-                <li>
-                    <span class="app-name">CCD Preview</span>
-                    <span class="app-badge">摄影 · 滤镜</span>
-                </li>
-                <li>
-                    <span class="app-name">喵喵清理</span>
-                    <span class="app-badge">工具 · 照片整理</span>
-                </li>
-                <li>
-                    <span class="app-name">Meow Oracle</span>
-                    <span class="app-badge">娱乐 · 神谕</span>
-                </li>
-            </ul>
+        <!-- 日本語 -->
+        <div class="lang-section" id="lang-ja">
+            <div class="card">
+                <h2>お問い合わせ</h2>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+                </div>
+                <p>ご質問やご意見がございましたら、お気軽にメールでお知らせください。24時間以内にご返信いたします。</p>
+            </div>
+            <div class="card">
+                <h2>アプリ一覧</h2>
+                <ul class="app-list">
+                    <li><span class="app-name">CCD Preview</span><span class="app-badge">写真 · フィルター</span></li>
+                    <li><span class="app-name">喵喵清理 (SwipeClean)</span><span class="app-badge">ユーティリティ · 写真整理</span></li>
+                    <li><span class="app-name">Meow Oracle</span><span class="app-badge">エンターテイメント · お告げ</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>よくある質問</h2>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 購入を復元するには？</div>
+                    <div class="faq-a">A: アプリを開き、設定/購入ページで「購入を復元」をタップしてください。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 支払い後に購入が反映されない</div>
+                    <div class="faq-a">A: 安定したインターネット接続を確認し、アプリを再起動してください。解決しない場合はお問い合わせください。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: アプリが起動時にクラッシュする</div>
+                    <div class="faq-a">A: 端末を再起動するか、アプリを再インストールしてみてください。改善しない場合は、端末のモデルとiOSバージョンをお知らせください。</div>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>常见问题 FAQ</h2>
-            <p><strong>Q: 如何恢复购买？</strong><br>
-            A: 打开 App，进入设置/购买页面，点击「恢复购买」按钮即可。</p>
-            <p style="margin-top: 16px;"><strong>Q: 内购后无法使用？</strong><br>
-            A: 请确保网络连接正常，尝试重启 App。如问题持续，请联系我们。</p>
-            <p style="margin-top: 16px;"><strong>Q: App 闪退怎么办？</strong><br>
-            A: 尝试重启设备或重新安装 App。如果依旧闪退，请告知我们你的设备型号和 iOS 版本。</p>
+        <!-- 한국어 -->
+        <div class="lang-section" id="lang-ko">
+            <div class="card">
+                <h2>문의하기</h2>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+                </div>
+                <p>질문이나 피드백이 있으시면 이메일로 보내주세요. 24시간 이내에 답변드리겠습니다.</p>
+            </div>
+            <div class="card">
+                <h2>앱 목록</h2>
+                <ul class="app-list">
+                    <li><span class="app-name">CCD Preview</span><span class="app-badge">사진 · 필터</span></li>
+                    <li><span class="app-name">喵喵清理 (SwipeClean)</span><span class="app-badge">유틸리티 · 사진 정리</span></li>
+                    <li><span class="app-name">Meow Oracle</span><span class="app-badge">엔터테인먼트 · 신탁</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>자주 묻는 질문</h2>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 구매를 복원하려면 어떻게 하나요?</div>
+                    <div class="faq-a">A: 앱을 열고 설정/구매 페이지에서 "구매 복원"을 탭하세요.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 결제 후 구매가 적용되지 않아요</div>
+                    <div class="faq-a">A: 안정적인 인터넷 연결을 확인하고 앱을 다시 시작해 보세요. 문제가 지속되면 문의해 주세요.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 앱 실행 시 충돌이 발생해요</div>
+                    <div class="faq-a">A: 기기를 다시 시작하거나 앱을 재설치해 보세요. 그래도 문제가 있으면 기기 모델과 iOS 버전을 알려주세요.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 简体中文 -->
+        <div class="lang-section" id="lang-zh">
+            <div class="card">
+                <h2>联系我们</h2>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <a href="mailto:992278408@qq.com">992278408@qq.com</a>
+                </div>
+                <p>如有问题或建议，欢迎随时邮件联系我们。我们会在 24 小时内回复。</p>
+            </div>
+            <div class="card">
+                <h2>我的 App</h2>
+                <ul class="app-list">
+                    <li><span class="app-name">CCD Preview</span><span class="app-badge">摄影 · 滤镜</span></li>
+                    <li><span class="app-name">喵喵清理 (SwipeClean)</span><span class="app-badge">工具 · 照片整理</span></li>
+                    <li><span class="app-name">Meow Oracle</span><span class="app-badge">娱乐 · 神谕</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>常见问题 FAQ</h2>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 如何恢复购买？</div>
+                    <div class="faq-a">A: 打开 App，进入设置/购买页面，点击「恢复购买」按钮即可。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: 内购后无法使用？</div>
+                    <div class="faq-a">A: 请确保网络连接正常，尝试重启 App。如问题持续，请联系我们。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q: App 闪退怎么办？</div>
+                    <div class="faq-a">A: 尝试重启设备或重新安装 App。如果依旧闪退，请告知我们你的设备型号和 iOS 版本。</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 桢洋 黄. All rights reserved.</p>
     </footer>
+
+    <script>
+        (function() {
+            var btns = document.querySelectorAll('.lang-btn');
+            var sections = {};
+            document.querySelectorAll('.lang-section').forEach(function(s) {
+                sections[s.id.replace('lang-', '')] = s;
+            });
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var lang = btn.getAttribute('data-lang');
+                    btns.forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    Object.keys(sections).forEach(function(k) {
+                        sections[k].classList.toggle('active', k === lang);
+                    });
+                    document.documentElement.lang =
+                        lang === 'en' ? 'en' :
+                        lang === 'ja' ? 'ja' :
+                        lang === 'ko' ? 'ko' : 'zh-CN';
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
